@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <TabPane fx:id="tabPane" prefHeight="444.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab onSelectionChanged="#Deactivate_btnEntry" text="Übersicht">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="405.0" prefWidth="680.0">
+                                <columns>
+                                  <TableColumn prefWidth="162.0" text="Datum" />
+                                  <TableColumn prefWidth="242.0" text="Firma" />
+                                    <TableColumn minWidth="0.0" prefWidth="158.0" text="Dauer" />
+                                    <TableColumn prefWidth="117.0" text="Betrag" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                <Tab onSelectionChanged="#Activate_btnEntry" text="C&amp;A">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="406.0" prefWidth="680.0">
+                                <columns>
+                                  <TableColumn prefWidth="120.0" text="Datum" />
+                                  <TableColumn prefWidth="120.0" text="Beginn" />
+                                    <TableColumn prefWidth="120.0" text="Ende" />
+                                    <TableColumn prefWidth="112.0" text="Arbeitszeit" />
+                                    <TableColumn prefWidth="112.0" text="Pause" />
+                                    <TableColumn prefWidth="95.0" text="Betrag" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab onSelectionChanged="#Activate_btnEntry" text="LernQuadrat">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="406.0" prefWidth="680.0">
+                                 <columns>
+                                    <TableColumn prefWidth="120.0" text="Datum" />
+                                    <TableColumn prefWidth="213.0" text="Schüler" />
+                                    <TableColumn minWidth="6.0" prefWidth="85.0" text="Beginn" />
+                                    <TableColumn prefWidth="85.0" text="Ende" />
+                                    <TableColumn prefWidth="85.0" text="Arbeitszeit" />
+                                    <TableColumn prefWidth="95.0" text="Betrag" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab onSelectionChanged="#Activate_btnEntry" text="Schülerhilfe">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="406.0" prefWidth="680.0">
+                                 <columns>
+                                    <TableColumn prefWidth="120.0" text="Datum" />
+                                    <TableColumn prefWidth="213.0" text="Schüler" />
+                                    <TableColumn minWidth="6.0" prefWidth="85.0" text="Beginn" />
+                                    <TableColumn prefWidth="85.0" text="Ende" />
+                                    <TableColumn prefWidth="85.0" text="Arbeitszeit" />
+                                    <TableColumn prefWidth="95.0" text="Betrag" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #9c8370;" text="Neuer Eintrag" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
