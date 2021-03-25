@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -20,7 +21,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="405.0" prefWidth="680.0">
+                              <TableView fx:id="tvUebersicht" prefHeight="405.0" prefWidth="680.0">
                                 <columns>
                                   <TableColumn prefWidth="162.0" text="Datum" />
                                   <TableColumn prefWidth="242.0" text="Firma" />
@@ -36,7 +37,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="406.0" prefWidth="680.0">
+                              <TableView fx:id="tvCA" prefHeight="406.0" prefWidth="680.0">
                                 <columns>
                                   <TableColumn prefWidth="120.0" text="Datum" />
                                   <TableColumn prefWidth="120.0" text="Beginn" />
@@ -88,7 +89,8 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #9c8370;" text="Neuer Eintrag" textFill="WHITE" />
+             <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="28.0"
+                     prefWidth="118.0" style="-fx-background-color: #9c8370;" text="Neuer Eintrag" textFill="WHITE"/>
          </children>
       </AnchorPane>
    </children>
