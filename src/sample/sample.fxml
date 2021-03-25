@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -88,7 +89,8 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #9c8370;" text="Neuer Eintrag" textFill="WHITE" />
+             <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="28.0"
+                     prefWidth="118.0" style="-fx-background-color: #9c8370;" text="Neuer Eintrag" textFill="WHITE"/>
          </children>
       </AnchorPane>
    </children>
