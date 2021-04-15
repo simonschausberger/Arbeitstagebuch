@@ -29,12 +29,17 @@ public class MainController {
     private static final int INTERRUPTION = 7;
     private static final int CLIENTS = 8;
     private static final int AMOUNT = 9;
+    public static final String NAME_CA = "C&A";
+    private static final String NAME_LQ = "LernQuadrat";
+    private static final String NAME_SH = "Schülerhilfe";
 
     public TabPane tabPane;
     public Button btnEntry;
     public Button btnDelete;
     public TableView tvUebersicht;
     public TableView tvCA;
+    public TableView tvLQ;
+    public TableView tvSH;
     public TableColumn col_ue_date;
     public TableColumn col_ue_company;
     public TableColumn col_ue_duration;
@@ -58,10 +63,20 @@ public class MainController {
     public TableColumn col_sh_duration;
     public TableColumn col_sh_amount;
 
+
     List<EntryUebersicht> listUebersicht = new ArrayList<>();
     List<EntryCA> listCA = new ArrayList<>();
+    List<EntryNachhilfe> listLQ = new ArrayList<>();
+    List<EntryNachhilfe> listSH = new ArrayList<>();
 
     public void initialize() {
+        SetColumns();
+        DeactivateBtnDelete();
+        DeactivateBtnEntry();
+        ReadDataBase();
+    }
+
+    public void SetColumns() {
         col_ue_date.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("date"));
         col_ue_company.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("company"));
         col_ue_duration.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("duration"));
@@ -74,9 +89,19 @@ public class MainController {
         col_ca_interruption.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("interruption"));
         col_ca_amount.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("amount"));
 
-        DeactivateBtnDelete();
-        DeactivateBtnEntry();
-        ReadDataBase();
+        col_lq_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("date"));
+        col_lq_begin.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("begin"));
+        col_lq_end.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("end"));
+        col_lq_duration.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("duration"));
+        col_lq_clients.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("clients"));
+        col_lq_amount.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("amount"));
+
+        col_sh_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("date"));
+        col_sh_begin.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("begin"));
+        col_sh_end.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("end"));
+        col_sh_duration.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("duration"));
+        col_sh_clients.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("clients"));
+        col_sh_amount.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("amount"));
     }
 
     public Connection GetDatabaseConnection() throws SQLException {
@@ -88,10 +113,15 @@ public class MainController {
         return conn;
     }
 
-    public void ReadDataBase() {
+    public void ClearLists() {
         listUebersicht.clear();
         listCA.clear();
+        listLQ.clear();
+        listSH.clear();
+    }
 
+    public void ReadDataBase() {
+        ClearLists();
         try {
             Connection connection = GetDatabaseConnection();
             PreparedStatement pst = connection.prepareStatement("SELECT * from eintrag");
@@ -102,16 +132,28 @@ public class MainController {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
                 String date = dateFormat.format(oldDate);
 
-                if (result.getArray(COMPANY).toString().equals("C&A")) {
+                if (result.getArray(COMPANY).toString().equals(NAME_CA)) {
                     EntryCA entryCA = new EntryCA(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), Float.parseFloat(result.getArray(AMOUNT).toString()), result.getArray(INTERRUPTION).toString());
                     listUebersicht.add(entryCA);
                     listCA.add(entryCA);
+                } else if (result.getArray(COMPANY).toString().equals(NAME_LQ)) {
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), Float.parseFloat(result.getArray(AMOUNT).toString()), result.getArray(CLIENTS).toString());
+                    listUebersicht.add(entryNachhilfe);
+                    listLQ.add(entryNachhilfe);
+                } else if (result.getArray(COMPANY).toString().equals(NAME_SH)) {
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), Float.parseFloat(result.getArray(AMOUNT).toString()), result.getArray(CLIENTS).toString());
+                    listUebersicht.add(entryNachhilfe);
+                    listSH.add(entryNachhilfe);
                 }
             }
             ObservableList<EntryUebersicht> observableListUebersicht = FXCollections.observableList(listUebersicht);
             ObservableList<EntryCA> observableListCA = FXCollections.observableList(listCA);
+            ObservableList<EntryNachhilfe> observableListLQ = FXCollections.observableList(listLQ);
+            ObservableList<EntryNachhilfe> observableListSH = FXCollections.observableList(listSH);
             tvUebersicht.setItems(observableListUebersicht);
             tvCA.setItems(observableListCA);
+            tvLQ.setItems(observableListLQ);
+            tvSH.setItems(observableListSH);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -138,12 +180,19 @@ public class MainController {
 
 
     public void NewEntry(ActionEvent actionEvent) {
-
+        ControllerDialog controllerDialog = null;
         switch (tabPane.getSelectionModel().getSelectedIndex()) {
             case 1:
-                ControllerDialog controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry.fxml")), "C&A");
-                controllerDialog.showStage();
+                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry.fxml")), NAME_CA);
+                break;
+            case 2:
+                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry.fxml")), NAME_LQ);
+                break;
+            case 3:
+                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry.fxml")), NAME_SH);
+                break;
         }
+        controllerDialog.showStage();
     }
 
 
@@ -154,7 +203,9 @@ public class MainController {
         if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
             id = listCA.get(tvCA.getSelectionModel().getFocusedIndex()).getId();
         } else if (tabPane.getSelectionModel().getSelectedIndex() == 2) {
-
+            id = listLQ.get(tvLQ.getSelectionModel().getFocusedIndex()).getId();
+        } else {
+            id = listSH.get(tvSH.getSelectionModel().getFocusedIndex()).getId();
         }
 
         try {
@@ -162,7 +213,7 @@ public class MainController {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate("DELETE FROM eintrag WHERE id = \'" + id + "\'");
-            System.out.println(listCA.get(tvCA.getSelectionModel().getFocusedIndex()).getId());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -176,6 +227,19 @@ public class MainController {
             ActivateBtnDelete();
         }
     }
+
+    public void MouseClickedLQ(MouseEvent mouseEvent) {
+        if (!(tvLQ.getSelectionModel().getSelectedCells().isEmpty())) {
+            ActivateBtnDelete();
+        }
+    }
+
+    public void MouseClickedSH(MouseEvent mouseEvent) {
+        if (!(tvSH.getSelectionModel().getSelectedCells().isEmpty())) {
+            ActivateBtnDelete();
+        }
+    }
+
 
     public void SecondaryTabSelected(Event event) {
         DeactivateBtnDelete();

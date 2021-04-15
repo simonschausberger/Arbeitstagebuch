@@ -56,7 +56,8 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                               <TableView fx:id="tvLQ" prefHeight="406.0" prefWidth="680.0">
+                               <TableView fx:id="tvLQ" onMouseClicked="#MouseClickedLQ" prefHeight="406.0"
+                                          prefWidth="680.0">
                                  <columns>
                                      <TableColumn fx:id="col_lq_date" prefWidth="120.0" text="Datum"/>
                                      <TableColumn fx:id="col_lq_clients" prefWidth="213.0" text="Schüler"/>
@@ -74,7 +75,8 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                               <TableView fx:id="tvSH" prefHeight="406.0" prefWidth="680.0">
+                               <TableView fx:id="tvSH" onMouseClicked="#MouseClickedSH" prefHeight="406.0"
+                                          prefWidth="680.0">
                                  <columns>
                                      <TableColumn fx:id="col_sh_date" prefWidth="120.0" text="Datum"/>
                                      <TableColumn fx:id="col_sh_clients" prefWidth="213.0" text="Schüler"/>

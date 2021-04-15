@@ -2,7 +2,7 @@ package sample;
 
 public class EntryCA extends EntryUebersicht {
 
-    String interruption;
+    private String interruption;
 
     public EntryCA(String id, String date, String company, String begin, String end, String duration, float amount, String interruption) {
         super(id, date, company, begin, end, duration, amount);

@@ -37,7 +37,7 @@
                </GridPane.margin>
             </TextField>
              <TextField fx:id="timeTo" promptText="Bis" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-             <TextField fx:id="interruption" promptText="Pause" GridPane.rowIndex="2"/>
+             <TextField fx:id="extra" GridPane.rowIndex="2"/>
              <TextField fx:id="amount" promptText="Betrag (€)" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
              <Button fx:id="addEvent" mnemonicParsing="false" prefHeight="31.0" prefWidth="315.0"
                      style="-fx-background-color: #9c8370;" text="Hinzufügen" textFill="WHITE" GridPane.columnSpan="2"

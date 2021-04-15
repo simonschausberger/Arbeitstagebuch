@@ -24,7 +24,7 @@ public class ControllerDialog {
     public DatePicker date;
     public TextField timeFrom;
     public TextField timeTo;
-    public TextField interruption;
+    public TextField extra;
     public TextField amount;
     public Button addEvent;
     FXMLLoader fxmlLoader;
@@ -36,6 +36,7 @@ public class ControllerDialog {
         this.mainController = mainController;
         this.title = title;
         thisStage = new Stage();
+
 
         try {
             this.fxmlLoader = fxmlLoader;
@@ -51,6 +52,12 @@ public class ControllerDialog {
     }
 
     public void initialize() {
+        if (title.equals(mainController.NAME_CA)) {
+            extra.setPromptText("Pause");
+        } else {
+            extra.setPromptText("Schüler");
+        }
+
         addEvent.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -66,9 +73,13 @@ public class ControllerDialog {
                     long difference = endtime.getTime() - starttime.getTime();
                     String duration = String.format("%02d:%02d", (difference / (60 * 60 * 1000) % 24), (difference / (60 * 1000) % 60));
 
-
-                    String values = "\'" + hash + "\'" + "," + "\'" + date.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" + timeFrom.getText() + "\'" + "," + "\'" + timeTo.getText() + "\'" + "," + "\'" + duration + "\'" + "," + "\'" + interruption.getText() + "\'" + "," + "\'" + amount.getText() + "\'";
-                    statement.executeUpdate("INSERT INTO eintrag (id, datum, firma, beginn, ende, dauer, pause, betrag) VALUES(" + values + ")");
+                    String sql = "";
+                    if (title.equals(mainController.NAME_CA)) {
+                        sql = "INSERT INTO eintrag (id, datum, firma, beginn, ende, dauer, pause, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + date.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" + timeFrom.getText() + "\'" + "," + "\'" + timeTo.getText() + "\'" + "," + "\'" + duration + "\'" + "," + "\'" + extra.getText() + "\'" + "," + "\'" + amount.getText() + "\')";
+                    } else {
+                        sql = "INSERT INTO eintrag (id, datum, firma, beginn, ende, dauer, schueler, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + date.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" + timeFrom.getText() + "\'" + "," + "\'" + timeTo.getText() + "\'" + "," + "\'" + duration + "\'" + "," + "\'" + extra.getText() + "\'" + "," + "\'" + amount.getText() + "\')";
+                    }
+                    statement.executeUpdate(sql);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } catch (ParseException e) {
