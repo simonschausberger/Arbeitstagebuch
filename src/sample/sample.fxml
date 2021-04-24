@@ -17,70 +17,73 @@
          <children>
             <TabPane fx:id="tabPane" prefHeight="444.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab onSelectionChanged="#Deactivate_btnEntry" text="Übersicht">
+                  <Tab onSelectionChanged="#MainTabSelected" text="Übersicht">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TableView fx:id="tvUebersicht" prefHeight="405.0" prefWidth="680.0">
                                 <columns>
-                                  <TableColumn prefWidth="162.0" text="Datum" />
-                                  <TableColumn prefWidth="242.0" text="Firma" />
-                                    <TableColumn minWidth="0.0" prefWidth="158.0" text="Dauer" />
-                                    <TableColumn prefWidth="117.0" text="Betrag" />
+                                    <TableColumn fx:id="col_ue_date" prefWidth="162.0" text="Datum"/>
+                                    <TableColumn fx:id="col_ue_company" prefWidth="242.0" text="Firma"/>
+                                    <TableColumn fx:id="col_ue_duration" minWidth="0.0" prefWidth="158.0" text="Dauer"/>
+                                    <TableColumn fx:id="col_ue_amount" prefWidth="117.0" text="Betrag"/>
                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                     </content>
                   </Tab>
-                <Tab onSelectionChanged="#Activate_btnEntry" text="C&amp;A">
+                  <Tab onSelectionChanged="#SecondaryTabSelected" text="C&amp;A">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tvCA" prefHeight="406.0" prefWidth="680.0">
+                               <TableView fx:id="tvCA" onMouseClicked="#MouseClickedCA" prefHeight="406.0"
+                                          prefWidth="680.0">
                                 <columns>
-                                  <TableColumn prefWidth="120.0" text="Datum" />
-                                  <TableColumn prefWidth="120.0" text="Beginn" />
-                                    <TableColumn prefWidth="120.0" text="Ende" />
-                                    <TableColumn prefWidth="112.0" text="Arbeitszeit" />
-                                    <TableColumn prefWidth="112.0" text="Pause" />
-                                    <TableColumn prefWidth="95.0" text="Betrag" />
+                                    <TableColumn fx:id="col_ca_date" prefWidth="120.0" text="Datum"/>
+                                    <TableColumn fx:id="col_ca_begin" prefWidth="120.0" text="Beginn"/>
+                                    <TableColumn fx:id="col_ca_end" prefWidth="120.0" text="Ende"/>
+                                    <TableColumn fx:id="col_ca_duration" prefWidth="112.0" text="Arbeitszeit"/>
+                                    <TableColumn fx:id="col_ca_interruption" prefWidth="112.0" text="Pause"/>
+                                    <TableColumn fx:id="col_ca_amount" prefWidth="95.0" text="Betrag"/>
                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab onSelectionChanged="#Activate_btnEntry" text="LernQuadrat">
+                  <Tab onSelectionChanged="#SecondaryTabSelected" text="LernQuadrat">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="406.0" prefWidth="680.0">
+                               <TableView fx:id="tvLQ" onMouseClicked="#MouseClickedLQ" prefHeight="406.0"
+                                          prefWidth="680.0">
                                  <columns>
-                                    <TableColumn prefWidth="120.0" text="Datum" />
-                                    <TableColumn prefWidth="213.0" text="Schüler" />
-                                    <TableColumn minWidth="6.0" prefWidth="85.0" text="Beginn" />
-                                    <TableColumn prefWidth="85.0" text="Ende" />
-                                    <TableColumn prefWidth="85.0" text="Arbeitszeit" />
-                                    <TableColumn prefWidth="95.0" text="Betrag" />
+                                     <TableColumn fx:id="col_lq_date" prefWidth="120.0" text="Datum"/>
+                                     <TableColumn fx:id="col_lq_clients" prefWidth="213.0" text="Schüler"/>
+                                     <TableColumn fx:id="col_lq_begin" minWidth="6.0" prefWidth="85.0" text="Beginn"/>
+                                     <TableColumn fx:id="col_lq_end" prefWidth="85.0" text="Ende"/>
+                                     <TableColumn fx:id="col_lq_duration" prefWidth="85.0" text="Arbeitszeit"/>
+                                     <TableColumn fx:id="col_lq_amount" prefWidth="95.0" text="Betrag"/>
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab onSelectionChanged="#Activate_btnEntry" text="Schülerhilfe">
+                  <Tab onSelectionChanged="#SecondaryTabSelected" text="Schülerhilfe">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="406.0" prefWidth="680.0">
+                               <TableView fx:id="tvSH" onMouseClicked="#MouseClickedSH" prefHeight="406.0"
+                                          prefWidth="680.0">
                                  <columns>
-                                    <TableColumn prefWidth="120.0" text="Datum" />
-                                    <TableColumn prefWidth="213.0" text="Schüler" />
-                                    <TableColumn minWidth="6.0" prefWidth="85.0" text="Beginn" />
-                                    <TableColumn prefWidth="85.0" text="Ende" />
-                                    <TableColumn prefWidth="85.0" text="Arbeitszeit" />
-                                    <TableColumn prefWidth="95.0" text="Betrag" />
+                                     <TableColumn fx:id="col_sh_date" prefWidth="120.0" text="Datum"/>
+                                     <TableColumn fx:id="col_sh_clients" prefWidth="213.0" text="Schüler"/>
+                                     <TableColumn fx:id="col_sh_begin" minWidth="6.0" prefWidth="85.0" text="Beginn"/>
+                                     <TableColumn fx:id="col_sh_end" prefWidth="85.0" text="Ende"/>
+                                     <TableColumn fx:id="col_sh_duration" prefWidth="85.0" text="Arbeitszeit"/>
+                                     <TableColumn fx:id="col_sh_amount" prefWidth="95.0" text="Betrag"/>
                                  </columns>
                               </TableView>
                            </children>
@@ -91,6 +94,8 @@
             </TabPane>
              <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="28.0"
                      prefWidth="118.0" style="-fx-background-color: #9c8370;" text="Neuer Eintrag" textFill="WHITE"/>
+             <Button fx:id="btnDelete" layoutX="528.0" mnemonicParsing="false" onAction="#DeleteEntry" prefHeight="28.0"
+                     prefWidth="34.0" style="-fx-background-color: #d65240;" text="X" textFill="WHITE"/>
          </children>
       </AnchorPane>
    </children>
