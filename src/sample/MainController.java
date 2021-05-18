@@ -26,12 +26,11 @@ public class MainController {
     private static final int START = 4;
     private static final int END = 5;
     private static final int DURATION = 6;
-    private static final int INTERRUPTION = 7;
-    private static final int CLIENTS = 8;
-    private static final int AMOUNT = 9;
+    private static final int CLIENTS = 7;
+    private static final int AMOUNT = 8;
     public static final String NAME_CA = "C&A";
-    private static final String NAME_LQ = "LernQuadrat";
-    private static final String NAME_SH = "Schülerhilfe";
+    public static final String NAME_LQ = "LernQuadrat";
+    public static final String NAME_SH = "Schülerhilfe";
 
     public TabPane tabPane;
     public Button btnEntry;
@@ -79,14 +78,9 @@ public class MainController {
     public void SetColumns() {
         col_ue_date.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("date"));
         col_ue_company.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("company"));
-        col_ue_duration.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("duration"));
         col_ue_amount.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, Float>("amount"));
 
         col_ca_date.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("date"));
-        col_ca_begin.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("begin"));
-        col_ca_end.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("end"));
-        col_ca_duration.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("duration"));
-        col_ca_interruption.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("interruption"));
         col_ca_amount.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("amount"));
 
         col_lq_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("date"));
@@ -133,15 +127,15 @@ public class MainController {
                 String date = dateFormat.format(oldDate);
 
                 if (result.getArray(COMPANY).toString().equals(NAME_CA)) {
-                    EntryCA entryCA = new EntryCA(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), Float.parseFloat(result.getArray(AMOUNT).toString()), result.getArray(INTERRUPTION).toString());
+                    EntryCA entryCA = new EntryCA(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(AMOUNT).toString());
                     listUebersicht.add(entryCA);
                     listCA.add(entryCA);
                 } else if (result.getArray(COMPANY).toString().equals(NAME_LQ)) {
-                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), Float.parseFloat(result.getArray(AMOUNT).toString()), result.getArray(CLIENTS).toString());
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(AMOUNT).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
                     listUebersicht.add(entryNachhilfe);
                     listLQ.add(entryNachhilfe);
                 } else if (result.getArray(COMPANY).toString().equals(NAME_SH)) {
-                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), Float.parseFloat(result.getArray(AMOUNT).toString()), result.getArray(CLIENTS).toString());
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(AMOUNT).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
                     listUebersicht.add(entryNachhilfe);
                     listSH.add(entryNachhilfe);
                 }
@@ -183,13 +177,13 @@ public class MainController {
         ControllerDialog controllerDialog = null;
         switch (tabPane.getSelectionModel().getSelectedIndex()) {
             case 1:
-                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry.fxml")), NAME_CA);
+                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry_ca.fxml")), NAME_CA);
                 break;
             case 2:
-                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry.fxml")), NAME_LQ);
+                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry_nachhilfe.fxml")), NAME_LQ);
                 break;
             case 3:
-                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry.fxml")), NAME_SH);
+                controllerDialog = new ControllerDialog(this, new FXMLLoader(getClass().getResource("entry_nachhilfe.fxml")), NAME_SH);
                 break;
         }
         controllerDialog.showStage();

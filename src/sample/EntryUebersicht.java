@@ -7,18 +7,12 @@ public class EntryUebersicht {
     String id;
     String date;
     String company;
-    String begin;
-    String end;
-    String duration;
-    float amount;
+    String amount;
 
-    public EntryUebersicht(String id, String date, String company, String begin, String end, String duration, float amount) {
+    public EntryUebersicht(String id, String date, String company, String amount) {
         this.id = id;
         this.date = date;
         this.company = company;
-        this.begin = begin;
-        this.end = end;
-        this.duration = duration;
         this.amount = amount;
     }
 
@@ -46,35 +40,11 @@ public class EntryUebersicht {
         this.company = company;
     }
 
-    public String getBegin() {
-        return begin;
-    }
-
-    public void setBegin(String begin) {
-        this.begin = begin;
-    }
-
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public float getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 }

@@ -1,10 +1,16 @@
 package sample;
 
 public class EntryNachhilfe extends EntryUebersicht {
+    String begin;
+    String end;
+    String duration;
     private String clients;
 
-    public EntryNachhilfe(String id, String date, String company, String begin, String end, String duration, float amount, String clients) {
-        super(id, date, company, begin, end, duration, amount);
+    public EntryNachhilfe(String id, String date, String company, String amount, String begin, String end, String duration, String clients) {
+        super(id, date, company, amount);
+        this.begin = begin;
+        this.end = end;
+        this.duration = duration;
         this.clients = clients;
     }
 
