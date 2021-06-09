@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -61,6 +58,7 @@ public class MainController {
     public TableColumn col_sh_end;
     public TableColumn col_sh_duration;
     public TableColumn col_sh_amount;
+    public TextField tfSum;
 
 
     List<EntryUebersicht> listUebersicht = new ArrayList<>();
@@ -73,6 +71,8 @@ public class MainController {
         DeactivateBtnDelete();
         DeactivateBtnEntry();
         ReadDataBase();
+        tfSum.setEditable(false);
+        SetSum();
     }
 
     public void SetColumns() {
@@ -127,15 +127,16 @@ public class MainController {
                 String date = dateFormat.format(oldDate);
 
                 if (result.getArray(COMPANY).toString().equals(NAME_CA)) {
-                    EntryCA entryCA = new EntryCA(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(AMOUNT).toString());
+                    EntryCA entryCA = new EntryCA(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Float.valueOf(result.getArray(AMOUNT).toString()));
                     listUebersicht.add(entryCA);
                     listCA.add(entryCA);
                 } else if (result.getArray(COMPANY).toString().equals(NAME_LQ)) {
-                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(AMOUNT).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
+                    System.out.println(result.getArray(END).toString());
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Float.valueOf(result.getArray(AMOUNT).toString()), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
                     listUebersicht.add(entryNachhilfe);
                     listLQ.add(entryNachhilfe);
                 } else if (result.getArray(COMPANY).toString().equals(NAME_SH)) {
-                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), result.getArray(AMOUNT).toString(), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Float.valueOf(result.getArray(AMOUNT).toString()), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
                     listUebersicht.add(entryNachhilfe);
                     listSH.add(entryNachhilfe);
                 }
@@ -148,6 +149,7 @@ public class MainController {
             tvCA.setItems(observableListCA);
             tvLQ.setItems(observableListLQ);
             tvSH.setItems(observableListSH);
+            SetSum();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -193,7 +195,6 @@ public class MainController {
     public void DeleteEntry(ActionEvent actionEvent) {
         String id = "";
 
-
         if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
             id = listCA.get(tvCA.getSelectionModel().getFocusedIndex()).getId();
         } else if (tabPane.getSelectionModel().getSelectedIndex() == 2) {
@@ -234,14 +235,60 @@ public class MainController {
         }
     }
 
-
-    public void SecondaryTabSelected(Event event) {
-        DeactivateBtnDelete();
-        ActivateBtnEntry();
-    }
-
     public void MainTabSelected(Event event) {
         DeactivateBtnDelete();
         DeactivateBtnEntry();
+        SetSum();
+    }
+
+    public void CATabSelected(Event event) {
+        DeactivateBtnDelete();
+        ActivateBtnEntry();
+        SetSum();
+    }
+
+    public void LQTabSelected(Event event) {
+        DeactivateBtnDelete();
+        ActivateBtnEntry();
+        SetSum();
+    }
+
+    public void SHTabSelected(Event event) {
+        DeactivateBtnDelete();
+        ActivateBtnEntry();
+        SetSum();
+    }
+
+    public void SetSum() {
+        float sum = 0;
+        int selectedTab = tabPane.getSelectionModel().getSelectedIndex();
+
+        switch (selectedTab) {
+            case 0:
+                for (EntryUebersicht entry : listUebersicht) {
+                    sum += Float.valueOf(entry.amount);
+                }
+                break;
+
+            case 1:
+                for (EntryCA entry : listCA) {
+                    sum += Float.valueOf(entry.amount);
+                }
+                break;
+
+            case 2:
+                for (EntryNachhilfe entry : listLQ) {
+                    sum += Float.valueOf(entry.amount);
+                }
+                break;
+
+            case 3:
+                for (EntryNachhilfe entry : listSH) {
+                    sum += Float.valueOf(entry.amount);
+                }
+                break;
+        }
+            tfSum.setText("Summe: " +((((int)(sum*100))/100.00)) +"€");
     }
 }
+

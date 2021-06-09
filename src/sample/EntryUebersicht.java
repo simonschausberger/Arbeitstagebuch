@@ -7,9 +7,9 @@ public class EntryUebersicht {
     String id;
     String date;
     String company;
-    String amount;
+    float amount;
 
-    public EntryUebersicht(String id, String date, String company, String amount) {
+    public EntryUebersicht(String id, String date, String company, float amount) {
         this.id = id;
         this.date = date;
         this.company = company;
@@ -40,11 +40,11 @@ public class EntryUebersicht {
         this.company = company;
     }
 
-    public String getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 }
