@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -65,6 +66,7 @@ public class MainController {
     List<EntryCA> listCA = new ArrayList<>();
     List<EntryNachhilfe> listLQ = new ArrayList<>();
     List<EntryNachhilfe> listSH = new ArrayList<>();
+
 
     public void initialize() {
         SetColumns();
@@ -212,6 +214,7 @@ public class MainController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        DeactivateBtnDelete();
         ReadDataBase();
 
     }
@@ -260,35 +263,36 @@ public class MainController {
     }
 
     public void SetSum() {
+
         float sum = 0;
         int selectedTab = tabPane.getSelectionModel().getSelectedIndex();
 
         switch (selectedTab) {
             case 0:
                 for (EntryUebersicht entry : listUebersicht) {
-                    sum += Float.valueOf(entry.amount);
+                    sum += entry.amount;
                 }
                 break;
 
             case 1:
                 for (EntryCA entry : listCA) {
-                    sum += Float.valueOf(entry.amount);
+                    sum += entry.amount;
                 }
                 break;
 
             case 2:
                 for (EntryNachhilfe entry : listLQ) {
-                    sum += Float.valueOf(entry.amount);
+                    sum += entry.amount;
                 }
                 break;
 
             case 3:
                 for (EntryNachhilfe entry : listSH) {
-                    sum += Float.valueOf(entry.amount);
+                    sum += entry.amount;
                 }
                 break;
         }
-            tfSum.setText("Summe: " +((((int)(sum*100))/100.00)) +"€");
+            tfSum.setText("Summe: " +sum +"€");
     }
 }
 
