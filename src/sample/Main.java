@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Arbeitstagebuch");
         primaryStage.getIcons().add(new Image("file:./images/books.png"));
-        primaryStage.setScene(new Scene(root, 680, 480));
+        primaryStage.setScene(new Scene(root, 680, 472));
         primaryStage.show();
     }
 
