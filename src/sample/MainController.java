@@ -9,10 +9,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.Date;
 
@@ -39,13 +45,8 @@ public class MainController {
     public TableView tvSH;
     public TableColumn col_ue_date;
     public TableColumn col_ue_company;
-    public TableColumn col_ue_duration;
     public TableColumn col_ue_amount;
     public TableColumn col_ca_date;
-    public TableColumn col_ca_begin;
-    public TableColumn col_ca_end;
-    public TableColumn col_ca_duration;
-    public TableColumn col_ca_interruption;
     public TableColumn col_ca_amount;
     public TableColumn col_lq_date;
     public TableColumn col_lq_clients;
@@ -293,6 +294,64 @@ public class MainController {
                 break;
         }
             tfSum.setText("Summe: " +sum +"€");
+    }
+
+    public void ExportCSV(ActionEvent actionEvent) throws IOException {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now);
+        OutputStream os = null;
+        PrintWriter printWriter = null;
+        String delim = ";";
+        String newline = "\n";
+        String dir = "./Excel/";
+        String tab = "";
+        Files.createDirectories(Paths.get("./Excel/"));
+        switch (tabPane.getSelectionModel().getSelectedIndex()){
+            case 0:
+                tab = "Uebersicht";
+                os = new FileOutputStream(dir + tab + "_" + date + ".csv");
+                printWriter = new PrintWriter(new OutputStreamWriter(os, "Cp1250"));
+
+                printWriter.append(col_ue_date.getText() +delim +col_ue_company.getText() +delim +col_ue_amount.getText() +newline);
+                for (EntryUebersicht entry : listUebersicht){
+                    printWriter.append(entry.getDate() +delim +entry.getCompany() +delim +entry.getAmount() +newline);
+                }
+                break;
+
+            case 1:
+                tab = "CundA";
+                os = new FileOutputStream(dir + tab + "_" + date + ".csv");
+                printWriter = new PrintWriter(new OutputStreamWriter(os,"Cp1250"));
+                printWriter.append(col_ca_date.getText() +delim +col_ca_amount.getText() +newline);
+                for (EntryCA entry : listCA){
+                    printWriter.append(entry.getDate() +delim +entry.getAmount() +newline);
+                }
+                break;
+
+            case 2:
+                tab = "LernQuadrat";
+                os = new FileOutputStream(dir + tab + "_" + date + ".csv");
+                printWriter = new PrintWriter(new OutputStreamWriter(os, "Cp1250"));
+                printWriter.append(col_lq_date.getText() +delim +col_lq_clients.getText() +delim +col_lq_begin.getText() +delim +col_lq_end.getText() + delim +col_lq_duration.getText() +delim +col_lq_amount.getText() +newline);
+                for (EntryNachhilfe entry : listLQ){
+                    printWriter.append(entry.getDate() +delim +entry.getClients() +delim +entry.getBegin() +delim +entry.getEnd() +delim +entry.getDuration() + delim +entry.getAmount() +newline);
+                }
+                break;
+                
+            case 3:
+                tab = "Schuelerhilfe";
+                os = new FileOutputStream(dir + tab + "_" + date + ".csv");
+                printWriter = new PrintWriter(new OutputStreamWriter(os, "Cp1250"));
+                printWriter.append(col_sh_date.getText() +delim +col_sh_clients.getText() +delim +col_sh_begin.getText() +delim +col_sh_end.getText() + delim +col_sh_duration.getText() +delim +col_sh_amount.getText() +newline);
+                for (EntryNachhilfe entry : listLQ){
+                    printWriter.append(entry.getDate() +delim +entry.getClients() +delim +entry.getBegin() +delim +entry.getEnd() +delim +entry.getDuration() + delim +entry.getAmount() +newline);
+                }
+                break;
+        }
+
+        printWriter.flush();
+        printWriter.close();
     }
 }
 

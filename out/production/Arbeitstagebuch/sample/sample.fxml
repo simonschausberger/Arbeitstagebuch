@@ -84,10 +84,10 @@
                   </Tab>
               </tabs>
             </TabPane>
-             <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="28.0" prefWidth="118.0" style="-fx-background-color: #9c8370;" text="Neuer Eintrag" textFill="WHITE" textOverrun="CLIP" />
-             <Button fx:id="btnDelete" layoutX="523.0" mnemonicParsing="false" onAction="#DeleteEntry" prefHeight="28.0" prefWidth="39.0" style="-fx-background-color: #d65240;" text="X" textFill="WHITE" />
-            <TextField fx:id="tfSum" layoutX="520.0" layoutY="442.0" prefHeight="28.0" prefWidth="156.0" style="-fx-border-color: green" />
-            <Button layoutX="470.0" mnemonicParsing="false" text="Button" visible="false" />
+             <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="28.0" prefWidth="118.0" style="-fx-background-color: #9c8370; -fx-background-radius: 0;" text="Neuer Eintrag" textFill="WHITE" />
+             <Button fx:id="btnDelete" layoutX="523.0" mnemonicParsing="false" onAction="#DeleteEntry" prefHeight="28.0" prefWidth="39.0" style="-fx-background-color: #d65240; -fx-background-radius: 0;" text="X" textFill="WHITE" />
+            <TextField fx:id="tfSum" layoutY="441.0" prefHeight="28.0" prefWidth="156.0" style="-fx-background-color: white;" />
+            <Button layoutX="562.0" layoutY="439.0" mnemonicParsing="false" onAction="#ExportCSV" prefHeight="32.0" prefWidth="118.0" style="-fx-background-color: #0f9438; -fx-background-radius: 0;" text="Exportieren" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

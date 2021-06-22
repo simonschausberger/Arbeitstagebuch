@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -57,6 +58,7 @@ public class ControllerDialog {
             scene = new Scene(this.fxmlLoader.load(), 330, 150);
             thisStage.setScene(scene);
             thisStage.setTitle(title);
+            thisStage.initModality(Modality.APPLICATION_MODAL);
             start();
         } catch (IOException e) {
             e.printStackTrace();
