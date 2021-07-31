@@ -1,0 +1,12 @@
+CREATE TABLE public.eintrag
+(
+    id character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    datum date NOT NULL,
+    firma character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    beginn character varying(50) COLLATE pg_catalog."default",
+    ende character varying(50) COLLATE pg_catalog."default",
+    dauer character varying(50) COLLATE pg_catalog."default",
+    schueler character varying(50) COLLATE pg_catalog."default",
+    betrag numeric(18,2) NOT NULL,
+    CONSTRAINT eintrag_pkey PRIMARY KEY (id)
+)
