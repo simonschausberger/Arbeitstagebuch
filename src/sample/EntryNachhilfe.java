@@ -1,12 +1,14 @@
 package sample;
 
+import java.util.Date;
+
 public class EntryNachhilfe extends EntryUebersicht {
     String begin;
     String end;
     String duration;
     private String clients;
 
-    public EntryNachhilfe(String id, String date, String company, float amount, String begin, String end, String duration, String clients) {
+    public EntryNachhilfe(String id, Date date, String company, double amount, String begin, String end, String duration, String clients) {
         super(id, date, company, amount);
         this.begin = begin;
         this.end = end;

@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class EntryUebersicht {
     String id;
-    String date;
+    Date date;
     String company;
-    float amount;
+    double amount;
 
-    public EntryUebersicht(String id, String date, String company, float amount) {
+    public EntryUebersicht(String id, Date date, String company, double amount) {
         this.id = id;
         this.date = date;
         this.company = company;
@@ -24,11 +24,11 @@ public class EntryUebersicht {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -40,11 +40,11 @@ public class EntryUebersicht {
         this.company = company;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 }

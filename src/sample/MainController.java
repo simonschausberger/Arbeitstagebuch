@@ -79,21 +79,89 @@ public class MainController {
     }
 
     public void SetColumns() {
-        col_ue_date.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("date"));
-        col_ue_company.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("company"));
-        col_ue_amount.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, Float>("amount"));
+        col_ue_date.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, Date>("date"));
+        col_ue_date.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Date> cell = new TableCell<EntryUebersicht, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
-        col_ca_date.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("date"));
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        setText(format.format(item));
+                    }
+                }
+            };
+            return cell;
+        });
+        col_ue_company.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("company"));
+        col_ue_amount.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, Double>("amount"));
+
+        col_ca_date.setCellValueFactory(new PropertyValueFactory<EntryCA, Date>("date"));
+        col_ca_date.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Date> cell = new TableCell<EntryUebersicht, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        setText(format.format(item));
+                    }
+                }
+            };
+            return cell;
+        });
         col_ca_amount.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("amount"));
 
-        col_lq_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("date"));
+        col_lq_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, Date>("date"));
+        col_lq_date.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Date> cell = new TableCell<EntryUebersicht, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        setText(format.format(item));
+                    }
+                }
+            };
+            return cell;
+        });
         col_lq_begin.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("begin"));
         col_lq_end.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("end"));
         col_lq_duration.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("duration"));
         col_lq_clients.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("clients"));
         col_lq_amount.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("amount"));
 
-        col_sh_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("date"));
+        col_sh_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, Date>("date"));
+        col_sh_date.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Date> cell = new TableCell<EntryUebersicht, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        setText(format.format(item));
+                    }
+                }
+            };
+            return cell;
+        });
         col_sh_begin.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("begin"));
         col_sh_end.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("end"));
         col_sh_duration.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("duration"));
@@ -127,19 +195,22 @@ public class MainController {
             while (result.next()) {
                 Date oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(result.getArray(DATE).toString());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-                String date = dateFormat.format(oldDate);
+                String string = dateFormat.format(oldDate);
+                System.out.println(string);
+                Date date = dateFormat.parse(string);
+                System.out.println(date);
 
                 if (result.getArray(COMPANY).toString().equals(NAME_CA)) {
-                    EntryCA entryCA = new EntryCA(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Float.valueOf(result.getArray(AMOUNT).toString()));
+                    EntryCA entryCA = new EntryCA(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Double.valueOf(result.getArray(AMOUNT).toString()));
                     listUebersicht.add(entryCA);
                     listCA.add(entryCA);
                 } else if (result.getArray(COMPANY).toString().equals(NAME_LQ)) {
                     System.out.println(result.getArray(END).toString());
-                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Float.valueOf(result.getArray(AMOUNT).toString()), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Double.valueOf(result.getArray(AMOUNT).toString()), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
                     listUebersicht.add(entryNachhilfe);
                     listLQ.add(entryNachhilfe);
                 } else if (result.getArray(COMPANY).toString().equals(NAME_SH)) {
-                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Float.valueOf(result.getArray(AMOUNT).toString()), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
+                    EntryNachhilfe entryNachhilfe = new EntryNachhilfe(result.getArray(ID).toString(), date, result.getArray(COMPANY).toString(), Double.valueOf(result.getArray(AMOUNT).toString()), result.getArray(START).toString(), result.getArray(END).toString(), result.getArray(DURATION).toString(), result.getArray(CLIENTS).toString());
                     listUebersicht.add(entryNachhilfe);
                     listSH.add(entryNachhilfe);
                 }
@@ -158,7 +229,16 @@ public class MainController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+        col_ue_date.setSortType(TableColumn.SortType.ASCENDING);
+        tvUebersicht.getSortOrder().add(col_ue_date);
+        tvUebersicht.sort();
+        col_ca_date.setSortType(TableColumn.SortType.ASCENDING);
+        tvCA.getSortOrder().add(col_ca_date);
+        tvCA.sort();
+        tvLQ.getSortOrder().add(col_lq_date);
+        tvLQ.sort();
+        tvSH.getSortOrder().add(col_sh_date);
+        tvSH.sort();
     }
 
     public void ActivateBtnEntry() {
@@ -265,7 +345,7 @@ public class MainController {
 
     public void SetSum() {
 
-        float sum = 0;
+        double sum = 0;
         int selectedTab = tabPane.getSelectionModel().getSelectedIndex();
 
         switch (selectedTab) {
@@ -293,7 +373,7 @@ public class MainController {
                 }
                 break;
         }
-            tfSum.setText("Summe: " +sum +"€");
+            tfSum.setText("Summe: " +Math.round(sum*100.0)/100.0 +"€");
     }
 
     public void ExportCSV(ActionEvent actionEvent) throws IOException {

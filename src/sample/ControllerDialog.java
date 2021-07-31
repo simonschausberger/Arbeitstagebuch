@@ -125,7 +125,7 @@ public class ControllerDialog {
             Statement statement = connection.createStatement();
             String duration = String.format("%02d:%02d", (getDifference() / (60 * 60 * 1000) % 24), (getDifference() / (60 * 1000) % 60));
 
-            String sql = "INSERT INTO eintrag (id, datum, firma, beginn, ende, dauer, schueler, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + dateNachhilfe.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" + timeFromNachhilfe.getText() + "\'" + "," + "\'" + timeToNachhilfe.getText() + "\'" + "," + "\'" + duration + "\'" + "," + "\'" + clientsNachhilfe.getText() + "\'" + "," + "\'" +amountNachhilfe.getText().replace(",", ".") + "\')";
+            String sql = "INSERT INTO eintrag (id, datum, firma, beginn, ende, dauer, schueler, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + dateNachhilfe.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" + timeFromNachhilfe.getText() + "\'" + "," + "\'" + timeToNachhilfe.getText() + "\'" + "," + "\'" + duration + "\'" + "," + "\'" + clientsNachhilfe.getText() + "\'" + "," + "\'" +Double.valueOf(amountNachhilfe.getText().replace(",", ".")) + "\')";
             System.out.println(sql);
             statement.executeUpdate(sql);
             mainController.ReadDataBase();
@@ -152,7 +152,7 @@ public class ControllerDialog {
             Random random = new Random();
             int number = random.nextInt(9999);
             String hash = dateCA.getValue().hashCode() + amountCA.hashCode() + Integer.toString(number);
-            String sql = "INSERT INTO eintrag (id, datum, firma, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + dateCA.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" +amountCA.getText().replace(",", ".") + "\')";
+            String sql = "INSERT INTO eintrag (id, datum, firma, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + dateCA.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" +Double.valueOf(amountCA.getText().replace(",", ".")) + "\')";
             System.out.println(sql);
             statement.executeUpdate(sql);
             mainController.ReadDataBase();
@@ -171,7 +171,7 @@ public class ControllerDialog {
 
     public void CheckFields() throws EntryException {
         if (title.equals(mainController.NAME_CA)) {
-            if (dateCA.getValue() == null || amountCA.getText() == null || dateCA.getValue().toString().trim().isEmpty() || amountCA.getText().trim().isEmpty()) {
+            if (dateCA.getValue() == null || amountCA.getText() == null || dateCA.getValue().toString().trim().isEmpty() || amountCA.getText().trim().isEmpty() || CheckAmountFields(amountCA)){
                 throw new EntryException("Überprüfe bitte deine Eingabe!");
             }
         } else {
@@ -180,12 +180,21 @@ public class ControllerDialog {
             if (dateNachhilfe.getValue() == null || timeFromNachhilfe.getText() == null ||  timeToNachhilfe.getText() == null ||
                     clientsNachhilfe.getText() == null || amountNachhilfe.getText() == null ||dateNachhilfe.getValue().toString().trim().isEmpty() ||
                     timeFromNachhilfe.getText().trim().isEmpty() || timeToNachhilfe.getText().trim().isEmpty() || clientsNachhilfe.getText().trim().isEmpty() ||
-                    amountNachhilfe.getText().trim().isEmpty() || !(CheckTimeFields(timeFromNachhilfe)) || !(CheckTimeFields(timeToNachhilfe))) {
+                    amountNachhilfe.getText().trim().isEmpty() || !(CheckTimeFields(timeFromNachhilfe)) || !(CheckTimeFields(timeToNachhilfe)) || CheckAmountFields(amountNachhilfe)) {
                 //TODO excel ausgabe
                 throw new EntryException("Überprüfe bitte deine Eingabe!");
             }
         }
     }
+
+    public boolean CheckAmountFields(TextField textField){
+        boolean rv = true;
+        if (textField.getText().matches("[0-9]{1,}[.,][0-9]\\w{0,1}")){
+            rv = false;
+        }
+        return rv;
+    }
+
     public boolean CheckTimeFields(TextField textField){
         boolean rv = true;
         if (!(textField.getText().matches("[0-9]{2}:[0-9]{2}")) || Integer.valueOf(textField.getText().substring(0,2)) > 24 ||
