@@ -44,6 +44,7 @@ public class ControllerDialog {
     private long difference;
     private Scene scene;
     DecimalFormat format = new DecimalFormat("#0.00");
+    private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public ControllerDialog(MainController mainController, FXMLLoader fxmlLoader, String title) {
         this.mainController = mainController;
@@ -124,7 +125,6 @@ public class ControllerDialog {
             Connection connection = mainController.GetDatabaseConnection();
             Statement statement = connection.createStatement();
             String duration = String.format("%02d:%02d", (getDifference() / (60 * 60 * 1000) % 24), (getDifference() / (60 * 1000) % 60));
-
             String sql = "INSERT INTO eintrag (id, datum, firma, beginn, ende, dauer, schueler, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + dateNachhilfe.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" + timeFromNachhilfe.getText() + "\'" + "," + "\'" + timeToNachhilfe.getText() + "\'" + "," + "\'" + duration + "\'" + "," + "\'" + clientsNachhilfe.getText() + "\'" + "," + "\'" +Double.valueOf(amountNachhilfe.getText().replace(",", ".")) + "\')";
             System.out.println(sql);
             statement.executeUpdate(sql);
@@ -152,7 +152,7 @@ public class ControllerDialog {
             Random random = new Random();
             int number = random.nextInt(9999);
             String hash = dateCA.getValue().hashCode() + amountCA.hashCode() + Integer.toString(number);
-            String sql = "INSERT INTO eintrag (id, datum, firma, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + dateCA.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" +Double.valueOf(amountCA.getText().replace(",", ".")) + "\')";
+            String sql = "INSERT INTO eintrag (id, datum, firma, betrag) VALUES(\'" + hash + "\'" + "," + "\'" + dateCA.getValue() + "\'" + "," + "\'" + title + "\'" + "," + "\'" +Double.valueOf((amountCA.getText().replace(",", "."))) + "\')";
             System.out.println(sql);
             statement.executeUpdate(sql);
             mainController.ReadDataBase();
@@ -167,6 +167,13 @@ public class ControllerDialog {
             }
             e.printStackTrace();
         }
+    }
+    public String AddZero(String amount){
+        if (!(amount.matches("[0-9]{1,}[.,][0-9]{1}]"))){
+            amount = amount.concat("0");
+            System.out.println(amount);
+        }
+        return amount;
     }
 
     public void CheckFields() throws EntryException {
@@ -189,7 +196,7 @@ public class ControllerDialog {
 
     public boolean CheckAmountFields(TextField textField){
         boolean rv = true;
-        if (textField.getText().matches("[0-9]{1,}[.,][0-9]\\w{0,1}")){
+        if (textField.getText().matches("[0-9]{1,}[.,][0-9]\\w{0,1}") || textField.getText().matches("[0-9]{1,}")){
             rv = false;
         }
         return rv;

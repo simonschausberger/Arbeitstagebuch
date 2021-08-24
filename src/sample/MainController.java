@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,11 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.*;
+import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -99,7 +102,23 @@ public class MainController {
         });
         col_ue_company.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, String>("company"));
         col_ue_amount.setCellValueFactory(new PropertyValueFactory<EntryUebersicht, Double>("amount"));
-
+        col_ue_amount.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
+                @Override
+                protected void updateItem(Double item, boolean empty) {
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        NumberFormat df = DecimalFormat.getInstance();
+                        df.setMinimumFractionDigits(2);
+                        df.setRoundingMode(RoundingMode.DOWN);
+                        setText(df.format(Double.parseDouble(item.toString()))+"€");
+                    }
+                }
+            };
+            return cell;
+        });
         col_ca_date.setCellValueFactory(new PropertyValueFactory<EntryCA, Date>("date"));
         col_ca_date.setCellFactory(column -> {
             TableCell<EntryUebersicht, Date> cell = new TableCell<EntryUebersicht, Date>() {
@@ -119,7 +138,23 @@ public class MainController {
             return cell;
         });
         col_ca_amount.setCellValueFactory(new PropertyValueFactory<EntryCA, String>("amount"));
-
+        col_ca_amount.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
+                @Override
+                protected void updateItem(Double item, boolean empty) {
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        NumberFormat df = DecimalFormat.getInstance();
+                        df.setMinimumFractionDigits(2);
+                        df.setRoundingMode(RoundingMode.DOWN);
+                        setText(df.format(Double.parseDouble(item.toString()))+"€");
+                    }
+                }
+            };
+            return cell;
+        });
         col_lq_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, Date>("date"));
         col_lq_date.setCellFactory(column -> {
             TableCell<EntryUebersicht, Date> cell = new TableCell<EntryUebersicht, Date>() {
@@ -143,6 +178,23 @@ public class MainController {
         col_lq_duration.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("duration"));
         col_lq_clients.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("clients"));
         col_lq_amount.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("amount"));
+        col_lq_amount.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
+                @Override
+                protected void updateItem(Double item, boolean empty) {
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        NumberFormat df = DecimalFormat.getInstance();
+                        df.setMinimumFractionDigits(2);
+                        df.setRoundingMode(RoundingMode.DOWN);
+                        setText(df.format(Double.parseDouble(item.toString()))+"€");
+                    }
+                }
+            };
+            return cell;
+        });
 
         col_sh_date.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, Date>("date"));
         col_sh_date.setCellFactory(column -> {
@@ -167,6 +219,23 @@ public class MainController {
         col_sh_duration.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("duration"));
         col_sh_clients.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("clients"));
         col_sh_amount.setCellValueFactory(new PropertyValueFactory<EntryNachhilfe, String>("amount"));
+        col_sh_amount.setCellFactory(column -> {
+            TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
+                @Override
+                protected void updateItem(Double item, boolean empty) {
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        NumberFormat df = DecimalFormat.getInstance();
+                        df.setMinimumFractionDigits(2);
+                        df.setRoundingMode(RoundingMode.DOWN);
+                        setText(df.format(Double.parseDouble(item.toString())) +"€");
+                    }
+                }
+            };
+            return cell;
+        });
     }
 
     public Connection GetDatabaseConnection() throws SQLException {
@@ -229,14 +298,16 @@ public class MainController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        col_ue_date.setSortType(TableColumn.SortType.ASCENDING);
+        col_ue_date.setSortType(TableColumn.SortType.DESCENDING);
         tvUebersicht.getSortOrder().add(col_ue_date);
         tvUebersicht.sort();
-        col_ca_date.setSortType(TableColumn.SortType.ASCENDING);
+        col_ca_date.setSortType(TableColumn.SortType.DESCENDING);
         tvCA.getSortOrder().add(col_ca_date);
         tvCA.sort();
+        col_lq_date.setSortType(TableColumn.SortType.DESCENDING);
         tvLQ.getSortOrder().add(col_lq_date);
         tvLQ.sort();
+        col_sh_date.setSortType(TableColumn.SortType.DESCENDING);
         tvSH.getSortOrder().add(col_sh_date);
         tvSH.sort();
     }
@@ -373,7 +444,10 @@ public class MainController {
                 }
                 break;
         }
-            tfSum.setText("Summe: " +Math.round(sum*100.0)/100.0 +"€");
+            NumberFormat df = DecimalFormat.getInstance();
+            df.setMinimumFractionDigits(2);
+            df.setRoundingMode(RoundingMode.DOWN);
+            tfSum.setText("Summe: " +df.format(sum) +"€");
     }
 
     public void ExportCSV(ActionEvent actionEvent) throws IOException {

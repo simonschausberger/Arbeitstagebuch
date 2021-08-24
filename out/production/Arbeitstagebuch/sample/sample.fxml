@@ -10,8 +10,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
       <AnchorPane prefHeight="472.0" prefWidth="680.0">
          <children>
@@ -21,11 +22,11 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tvUebersicht" prefHeight="410.0" prefWidth="680.0">
+                              <TableView fx:id="tvUebersicht" prefHeight="403.0" prefWidth="680.0">
                                 <columns>
                                     <TableColumn fx:id="col_ue_date" prefWidth="207.0" text="Datum" />
                                     <TableColumn fx:id="col_ue_company" prefWidth="315.0" text="Firma" />
-                                    <TableColumn fx:id="col_ue_amount" prefWidth="156.0" text="Betrag" />
+                                    <TableColumn fx:id="col_ue_amount" prefWidth="140.0" style="-fx-alignment: CENTER-RIGHT;" text="Betrag" />
                                 </columns>
                               </TableView>
                            </children>
@@ -36,10 +37,10 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                               <TableView fx:id="tvCA" onMouseClicked="#MouseClickedCA" prefHeight="410.0" prefWidth="680.0">
+                               <TableView fx:id="tvCA" onMouseClicked="#MouseClickedCA" prefHeight="403.0" prefWidth="680.0">
                                 <columns>
                                     <TableColumn fx:id="col_ca_date" prefWidth="339.0" text="Datum" />
-                                    <TableColumn fx:id="col_ca_amount" prefWidth="339.0" text="Betrag" />
+                                    <TableColumn fx:id="col_ca_amount" prefWidth="323.0" style="-fx-alignment: CENTER-RIGHT;" text="Betrag" />
                                 </columns>
                               </TableView>
                            </children>
@@ -50,14 +51,14 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                               <TableView fx:id="tvLQ" onMouseClicked="#MouseClickedLQ" prefHeight="410.0" prefWidth="680.0">
+                               <TableView fx:id="tvLQ" onMouseClicked="#MouseClickedLQ" prefHeight="403.0" prefWidth="680.0">
                                  <columns>
                                      <TableColumn fx:id="col_lq_date" prefWidth="120.0" text="Datum" />
                                      <TableColumn fx:id="col_lq_clients" prefWidth="213.0" text="Schüler" />
                                      <TableColumn fx:id="col_lq_begin" minWidth="6.0" prefWidth="85.0" text="Beginn" />
                                      <TableColumn fx:id="col_lq_end" prefWidth="85.0" text="Ende" />
                                      <TableColumn fx:id="col_lq_duration" prefWidth="85.0" text="Arbeitszeit" />
-                                     <TableColumn fx:id="col_lq_amount" prefWidth="90.0" text="Betrag" />
+                                     <TableColumn fx:id="col_lq_amount" prefWidth="74.0" style="-fx-alignment: CENTER-RIGHT;" text="Betrag" />
                                  </columns>
                               </TableView>
                            </children>
@@ -68,14 +69,14 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                               <TableView fx:id="tvSH" onMouseClicked="#MouseClickedSH" prefHeight="410.0" prefWidth="680.0">
+                               <TableView fx:id="tvSH" onMouseClicked="#MouseClickedSH" prefHeight="403.0" prefWidth="680.0">
                                  <columns>
                                      <TableColumn fx:id="col_sh_date" prefWidth="120.0" text="Datum" />
                                      <TableColumn fx:id="col_sh_clients" prefWidth="213.0" text="Schüler" />
                                      <TableColumn fx:id="col_sh_begin" minWidth="6.0" prefWidth="85.0" text="Beginn" />
                                      <TableColumn fx:id="col_sh_end" prefWidth="85.0" text="Ende" />
                                      <TableColumn fx:id="col_sh_duration" prefWidth="85.0" text="Arbeitszeit" />
-                                     <TableColumn fx:id="col_sh_amount" prefWidth="90.0" text="Betrag" />
+                                     <TableColumn fx:id="col_sh_amount" prefWidth="74.0" style="-fx-alignment: CENTER-RIGHT;" text="Betrag" />
                                  </columns>
                               </TableView>
                            </children>
@@ -84,10 +85,13 @@
                   </Tab>
               </tabs>
             </TabPane>
-             <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="28.0" prefWidth="118.0" style="-fx-background-color: #9c8370; -fx-background-radius: 0;" text="Neuer Eintrag" textFill="WHITE" />
-             <Button fx:id="btnDelete" layoutX="523.0" mnemonicParsing="false" onAction="#DeleteEntry" prefHeight="28.0" prefWidth="39.0" style="-fx-background-color: #d65240; -fx-background-radius: 0;" text="X" textFill="WHITE" />
-            <TextField fx:id="tfSum" layoutY="441.0" prefHeight="28.0" prefWidth="156.0" style="-fx-background-color: white;" />
-            <Button layoutX="562.0" layoutY="439.0" mnemonicParsing="false" onAction="#ExportCSV" prefHeight="32.0" prefWidth="118.0" style="-fx-background-color: #0f9438; -fx-background-radius: 0;" text="Exportieren" textFill="WHITE" />
+             <Button fx:id="btnEntry" layoutX="562.0" mnemonicParsing="false" onAction="#NewEntry" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #9c8370; -fx-background-radius: 0;" text="Neuer Eintrag" textFill="WHITE" />
+             <Button fx:id="btnDelete" layoutX="521.0" mnemonicParsing="false" onAction="#DeleteEntry" prefHeight="39.0" prefWidth="41.0" style="-fx-background-color: #d65240; -fx-background-radius: 0;" text="X" textFill="WHITE" />
+            <TextField fx:id="tfSum" alignment="CENTER_RIGHT" layoutX="470.0" layoutY="443.0" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: default;">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></TextField>
+            <Button layoutY="443.0" mnemonicParsing="false" onAction="#ExportCSV" prefHeight="28.0" prefWidth="118.0" style="-fx-background-color: #0f9438; -fx-background-radius: 0;" text="Exportieren" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
