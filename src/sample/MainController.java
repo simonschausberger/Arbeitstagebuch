@@ -239,10 +239,16 @@ public class MainController {
     }
 
     public Connection GetDatabaseConnection() throws SQLException {
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String url = "jdbc:postgresql://castor.db.elephantsql.com:5432/pkcucibq";
         Properties props = new Properties();
-        props.setProperty("user", "postgres");
-        props.setProperty("password", "losenstein8");
+        try {
+            Class.forName("org.postgresql.Driver");
+        }
+        catch (java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        props.setProperty("user", "pkcucibq");
+        props.setProperty("password", "DNmkKgt8vRKKdRNFdBGKlj2-2XLwmYon");
         Connection conn = DriverManager.getConnection(url, props);
         return conn;
     }

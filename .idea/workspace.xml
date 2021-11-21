@@ -7,17 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="design update and entry_ca.fxml works again">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Arbeitstagebuch_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ControllerDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ControllerDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Arbeitstagebuch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Arbeitstagebuch.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arbeitstagebuch/sample/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arbeitstagebuch/sample/MainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
     </list>
-    <ignored path="JavaFxApplication.iws" />
-    <ignored path=".idea/workspace.xml" />
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,137 +58,6 @@
     </breakpoint_any>
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
-  </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/EntryNachhilfe.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sample/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-95">
-              <caret line="469" column="56" selection-start-line="469" selection-start-column="56" selection-end-line="469" selection-end-column="56" />
-              <folding>
-                <element signature="e#3661#4369#0" expanded="true" />
-                <element signature="e#4368#4369#0" expanded="true" />
-                <element signature="e#5214#5799#0" expanded="true" />
-                <element signature="e#5798#5799#0" expanded="true" />
-                <element signature="e#7191#7776#0" expanded="true" />
-                <element signature="e#7775#7776#0" expanded="true" />
-                <element signature="e#9177#9762#0" expanded="true" />
-                <element signature="e#9761#9762#0" expanded="true" />
-                <element signature="e#11762#11763#0" expanded="true" />
-                <element signature="e#11804#11805#0" expanded="true" />
-                <element signature="e#11844#11845#0" expanded="true" />
-                <element signature="e#11885#11886#0" expanded="true" />
-                <element signature="e#11924#11925#0" expanded="true" />
-                <element signature="e#11967#11968#0" expanded="true" />
-                <element signature="e#12008#12009#0" expanded="true" />
-                <element signature="e#12050#12051#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Excel/Uebersicht_08082021.csv">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Excel/LernQuadrat_08082021.csv">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/EntryException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/EntryUebersicht.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-              <folding>
-                <element signature="e#395#396#0" expanded="true" />
-                <element signature="e#420#421#0" expanded="true" />
-                <element signature="e#456#457#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-                <element signature="e#513#514#0" expanded="true" />
-                <element signature="e#540#541#0" expanded="true" />
-                <element signature="e#578#579#0" expanded="true" />
-                <element signature="e#610#611#0" expanded="true" />
-                <element signature="e#644#645#0" expanded="true" />
-                <element signature="e#674#675#0" expanded="true" />
-                <element signature="e#720#721#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-                <element signature="e#791#792#0" expanded="true" />
-                <element signature="e#820#821#0" expanded="true" />
-                <element signature="e#868#869#0" expanded="true" />
-                <element signature="e#904#905#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="78" column="126" selection-start-line="78" selection-start-column="126" selection-end-line="78" selection-end-column="126" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/entry_nachhilfe.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/entry_ca.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -281,6 +145,7 @@
     <option name="width" value="1938" />
     <option name="height" value="1048" />
   </component>
+  <component name="ProjectId" id="21C1n2bAFFMbZhIExF6eNn3kznd" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -340,6 +205,10 @@
       </pane>
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -353,26 +222,22 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1627760381717" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample" />
-    <property name="recentsLimit" value="5" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Win10\IdeaProjects\Arbeitstagebuch\src\sample" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -384,12 +249,6 @@
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
-    </configuration>
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
@@ -445,6 +304,7 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -596,31 +456,26 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ControllerDialog.java</url>
           <line>171</line>
-          <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ControllerDialog.java</url>
           <line>172</line>
-          <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ControllerDialog.java</url>
           <line>175</line>
-          <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ControllerDialog.java</url>
           <line>173</line>
-          <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ControllerDialog.java</url>
           <line>154</line>
-          <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
@@ -648,8 +503,8 @@
     <entry file="file://$PROJECT_DIR$/src/sample/Controller_CA.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/Entry_Uebersicht.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/Entry_CA.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/stage/Stage.java" />
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_181/javafx-src.zip!/javafx/stage/Stage.java" />
+    <entry file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/stage/Stage.java" />
+    <entry file="jar://$PROJECT_DIR$/../../../../Program Files (x86)/Java/jdk1.8.0_181/javafx-src.zip!/javafx/stage/Stage.java" />
     <entry file="file://$PROJECT_DIR$/new.csv" />
     <entry file="file://$PROJECT_DIR$/src/sample/EntryCA.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -662,7 +517,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/control/TableColumn.java">
+    <entry file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/control/TableColumn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="384" column="22" selection-start-line="384" selection-start-column="22" selection-end-line="384" selection-end-column="22" />
@@ -689,7 +544,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/control/TableColumnBase.java">
+    <entry file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/control/TableColumnBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="188" column="27" selection-start-line="188" selection-start-column="27" selection-end-line="188" selection-end-column="27" />
