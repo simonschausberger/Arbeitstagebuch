@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.*;
 import java.math.RoundingMode;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -65,12 +63,11 @@ public class MainController {
     public TableColumn col_sh_amount;
     public TextField tfSum;
 
-
     List<EntryUebersicht> listUebersicht = new ArrayList<>();
     List<EntryCA> listCA = new ArrayList<>();
     List<EntryNachhilfe> listLQ = new ArrayList<>();
     List<EntryNachhilfe> listSH = new ArrayList<>();
-
+    public double currentSum;
 
     public void initialize() {
         SetColumns();
@@ -78,7 +75,7 @@ public class MainController {
         DeactivateBtnEntry();
         ReadDataBase();
         tfSum.setEditable(false);
-        SetSum();
+        ActivateSum();
     }
 
     public void SetColumns() {
@@ -90,10 +87,9 @@ public class MainController {
                 @Override
                 protected void updateItem(Date item, boolean empty) {
                     super.updateItem(item, empty);
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         setText(format.format(item));
                     }
                 }
@@ -106,14 +102,13 @@ public class MainController {
             TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
                 @Override
                 protected void updateItem(Double item, boolean empty) {
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         NumberFormat df = DecimalFormat.getInstance();
                         df.setMinimumFractionDigits(2);
                         df.setRoundingMode(RoundingMode.DOWN);
-                        setText(df.format(Double.parseDouble(item.toString()))+"€");
+                        setText(df.format(Double.parseDouble(item.toString())) + "€");
                     }
                 }
             };
@@ -127,10 +122,9 @@ public class MainController {
                 @Override
                 protected void updateItem(Date item, boolean empty) {
                     super.updateItem(item, empty);
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         setText(format.format(item));
                     }
                 }
@@ -142,14 +136,13 @@ public class MainController {
             TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
                 @Override
                 protected void updateItem(Double item, boolean empty) {
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         NumberFormat df = DecimalFormat.getInstance();
                         df.setMinimumFractionDigits(2);
                         df.setRoundingMode(RoundingMode.DOWN);
-                        setText(df.format(Double.parseDouble(item.toString()))+"€");
+                        setText(df.format(Double.parseDouble(item.toString())) + "€");
                     }
                 }
             };
@@ -163,10 +156,9 @@ public class MainController {
                 @Override
                 protected void updateItem(Date item, boolean empty) {
                     super.updateItem(item, empty);
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         setText(format.format(item));
                     }
                 }
@@ -182,14 +174,13 @@ public class MainController {
             TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
                 @Override
                 protected void updateItem(Double item, boolean empty) {
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         NumberFormat df = DecimalFormat.getInstance();
                         df.setMinimumFractionDigits(2);
                         df.setRoundingMode(RoundingMode.DOWN);
-                        setText(df.format(Double.parseDouble(item.toString()))+"€");
+                        setText(df.format(Double.parseDouble(item.toString())) + "€");
                     }
                 }
             };
@@ -204,10 +195,9 @@ public class MainController {
                 @Override
                 protected void updateItem(Date item, boolean empty) {
                     super.updateItem(item, empty);
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         setText(format.format(item));
                     }
                 }
@@ -223,14 +213,13 @@ public class MainController {
             TableCell<EntryUebersicht, Double> cell = new TableCell<EntryUebersicht, Double>() {
                 @Override
                 protected void updateItem(Double item, boolean empty) {
-                    if(empty) {
+                    if (empty) {
                         setText(null);
-                    }
-                    else {
+                    } else {
                         NumberFormat df = DecimalFormat.getInstance();
                         df.setMinimumFractionDigits(2);
                         df.setRoundingMode(RoundingMode.DOWN);
-                        setText(df.format(Double.parseDouble(item.toString())) +"€");
+                        setText(df.format(Double.parseDouble(item.toString())) + "€");
                     }
                 }
             };
@@ -243,8 +232,7 @@ public class MainController {
         Properties props = new Properties();
         try {
             Class.forName("org.postgresql.Driver");
-        }
-        catch (java.lang.ClassNotFoundException e) {
+        } catch (java.lang.ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
         props.setProperty("user", "pkcucibq");
@@ -298,7 +286,7 @@ public class MainController {
             tvCA.setItems(observableListCA);
             tvLQ.setItems(observableListLQ);
             tvSH.setItems(observableListSH);
-            SetSum();
+            ActivateSum();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -399,29 +387,28 @@ public class MainController {
     public void MainTabSelected(Event event) {
         DeactivateBtnDelete();
         DeactivateBtnEntry();
-        SetSum();
+        ActivateSum();
     }
 
     public void CATabSelected(Event event) {
         DeactivateBtnDelete();
         ActivateBtnEntry();
-        SetSum();
+        ActivateSum();
     }
 
     public void LQTabSelected(Event event) {
         DeactivateBtnDelete();
         ActivateBtnEntry();
-        SetSum();
+        ActivateSum();
     }
 
     public void SHTabSelected(Event event) {
         DeactivateBtnDelete();
         ActivateBtnEntry();
-        SetSum();
+        ActivateSum();
     }
 
-    public void SetSum() {
-
+    public void ActivateSum() {
         double sum = 0;
         int selectedTab = tabPane.getSelectionModel().getSelectedIndex();
 
@@ -450,16 +437,19 @@ public class MainController {
                 }
                 break;
         }
-            NumberFormat df = DecimalFormat.getInstance();
-            df.setMinimumFractionDigits(2);
-            df.setRoundingMode(RoundingMode.DOWN);
-            tfSum.setText("Summe: " +df.format(sum) +"€");
+        currentSum = sum;
+        NumberFormat df = DecimalFormat.getInstance();
+        df.setMinimumFractionDigits(2);
+        df.setRoundingMode(RoundingMode.DOWN);
+        tfSum.setText("Summe: " + df.format(sum) + "€");
     }
 
     public void ExportCSV(ActionEvent actionEvent) throws IOException {
+        Locale.setDefault(Locale.GERMAN);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
         LocalDateTime now = LocalDateTime.now();
         String date = dtf.format(now);
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         OutputStream os = null;
         PrintWriter printWriter = null;
         String delim = ";";
@@ -467,51 +457,70 @@ public class MainController {
         String dir = "./Excel/";
         String tab = "";
         Files.createDirectories(Paths.get("./Excel/"));
-        switch (tabPane.getSelectionModel().getSelectedIndex()){
+        String sumString = AdaptAmount(currentSum);
+        switch (tabPane.getSelectionModel().getSelectedIndex()) {
             case 0:
                 tab = "Uebersicht";
                 os = new FileOutputStream(dir + tab + "_" + date + ".csv");
                 printWriter = new PrintWriter(new OutputStreamWriter(os, "Cp1250"));
 
-                printWriter.append(col_ue_date.getText() +delim +col_ue_company.getText() +delim +col_ue_amount.getText() +newline);
-                for (EntryUebersicht entry : listUebersicht){
-                    printWriter.append(entry.getDate() +delim +entry.getCompany() +delim +entry.getAmount() +newline);
+                printWriter.append(col_ue_date.getText() + delim + col_ue_company.getText() + delim + col_ue_amount.getText() + newline);
+                for (EntryUebersicht entry : listUebersicht) {
+                    String dateString = format.format(entry.getDate());
+                    String amountString = AdaptAmount(entry.getAmount());
+                    printWriter.append(dateString + delim + entry.getCompany() + delim + amountString + newline);
                 }
+                printWriter.append(delim +delim +sumString);
                 break;
 
             case 1:
                 tab = "CundA";
                 os = new FileOutputStream(dir + tab + "_" + date + ".csv");
-                printWriter = new PrintWriter(new OutputStreamWriter(os,"Cp1250"));
-                printWriter.append(col_ca_date.getText() +delim +col_ca_amount.getText() +newline);
-                for (EntryCA entry : listCA){
-                    printWriter.append(entry.getDate() +delim +entry.getAmount() +newline);
+                printWriter = new PrintWriter(new OutputStreamWriter(os, "Cp1250"));
+                printWriter.append(col_ca_date.getText() + delim + col_ca_amount.getText() + newline);
+                for (EntryCA entry : listCA) {
+                    String dateString = format.format(entry.getDate());
+                    String amountString = AdaptAmount(entry.getAmount());
+                    printWriter.append(dateString + delim + amountString + newline);
                 }
+                printWriter.append(delim +sumString);
                 break;
 
             case 2:
                 tab = "LernQuadrat";
                 os = new FileOutputStream(dir + tab + "_" + date + ".csv");
                 printWriter = new PrintWriter(new OutputStreamWriter(os, "Cp1250"));
-                printWriter.append(col_lq_date.getText() +delim +col_lq_clients.getText() +delim +col_lq_begin.getText() +delim +col_lq_end.getText() + delim +col_lq_duration.getText() +delim +col_lq_amount.getText() +newline);
-                for (EntryNachhilfe entry : listLQ){
-                    printWriter.append(entry.getDate() +delim +entry.getClients() +delim +entry.getBegin() +delim +entry.getEnd() +delim +entry.getDuration() + delim +entry.getAmount() +newline);
+                printWriter.append(col_lq_date.getText() + delim + col_lq_clients.getText() + delim + col_lq_begin.getText() + delim + col_lq_end.getText() + delim + col_lq_duration.getText() + delim + col_lq_amount.getText() + newline);
+                for (EntryNachhilfe entry : listLQ) {
+                    String dateString = format.format(entry.getDate());
+                    String amountString = AdaptAmount(entry.getAmount());
+                    printWriter.append(dateString + delim + entry.getClients() + delim + entry.getBegin() + delim + entry.getEnd() + delim + entry.getDuration() + delim + amountString + newline);
                 }
+                printWriter.append(delim +delim +delim +delim +delim +sumString);
                 break;
-                
+
             case 3:
                 tab = "Schuelerhilfe";
                 os = new FileOutputStream(dir + tab + "_" + date + ".csv");
                 printWriter = new PrintWriter(new OutputStreamWriter(os, "Cp1250"));
-                printWriter.append(col_sh_date.getText() +delim +col_sh_clients.getText() +delim +col_sh_begin.getText() +delim +col_sh_end.getText() + delim +col_sh_duration.getText() +delim +col_sh_amount.getText() +newline);
-                for (EntryNachhilfe entry : listLQ){
-                    printWriter.append(entry.getDate() +delim +entry.getClients() +delim +entry.getBegin() +delim +entry.getEnd() +delim +entry.getDuration() + delim +entry.getAmount() +newline);
+                printWriter.append(col_sh_date.getText() + delim + col_sh_clients.getText() + delim + col_sh_begin.getText() + delim + col_sh_end.getText() + delim + col_sh_duration.getText() + delim + col_sh_amount.getText() + newline);
+                for (EntryNachhilfe entry : listLQ) {
+                    String dateString = format.format(entry.getDate());
+                    String amountString = AdaptAmount(entry.getAmount());
+                    printWriter.append(dateString + delim + entry.getClients() + delim + entry.getBegin() + delim + entry.getEnd() + delim + entry.getDuration() + delim + amountString + newline);
                 }
+                printWriter.append(delim +delim +delim +delim +delim +sumString);
                 break;
         }
-
         printWriter.flush();
         printWriter.close();
+    }
+
+    private String AdaptAmount(double amount) {
+        Locale locale = new Locale("DE", "DE");
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
+        String amountString = formatter.format(amount);
+        return amountString;
     }
 }
 
