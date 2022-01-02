@@ -25,7 +25,7 @@
                               <TableView fx:id="tvUebersicht" prefHeight="403.0" prefWidth="680.0">
                                 <columns>
                                     <TableColumn fx:id="col_ue_date" prefWidth="207.0" text="Datum" />
-                                    <TableColumn fx:id="col_ue_company" prefWidth="315.0" text="Firma" />
+                                    <TableColumn fx:id="col_ue_company" prefWidth="315.0" text="Arbeitgeber" />
                                     <TableColumn fx:id="col_ue_amount" prefWidth="140.0" style="-fx-alignment: CENTER-RIGHT;" text="Betrag" />
                                 </columns>
                               </TableView>
